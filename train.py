@@ -2,7 +2,6 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from seg_unet import unet
-#from Model.seg_hrnet import seg_hrnet
 from dataProcess import trainGenerator, color_dict
 from keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau
 import matplotlib.pyplot as plt
@@ -33,13 +32,15 @@ classNum = 2
 #  模型输入图像大小
 input_size = (512, 512, 3)
 #  训练模型的迭代总轮数
-epochs = 50
+epochs = 30
 #  初始学习率
-learning_rate = 1e-4
+learning_rate = 3e-4
 #  预训练模型地址
 premodel_path = None
 #  训练模型保存地址
-model_path = "Model\\unet_model.hdf5"
+model_path = "Model_UNet\\weights.{epoch:02d}-{val_loss:.2f}.hdf5"
+#model_path = "Model_MFNet\\weights.{epoch:02d}-{val_loss:.2f}.hdf5"
+#model_path = "Model_UFNet\\weights.{epoch:02d}-{val_loss:.2f}.hdf5"
 
 #  训练数据数目
 train_num = len(os.listdir(train_image_path))
